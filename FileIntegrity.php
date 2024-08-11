@@ -7,6 +7,7 @@ class FileIntegrity {
      * @var string|null
      */
     private ?string $_root = NULL;
+
     /**
      * @var string|null
      */
@@ -16,20 +17,33 @@ class FileIntegrity {
      * @var array|null
      */
     private ?array $_hashes = NULL;
+
     /**
      * @var string|null
      */
     private ?string $_filename = NULL;
+
+    /**
+     * @var string|null
+     */
+    private ?string $_fileversion = NULL;
+
+
     /**
      * @var string|null
      */
     private ?string $_errormsg = NULL;
 
+    /**
+     * @return bool
+     */
  public function init():bool{
      try {
        $this->create();
+       return true;
      } catch(Exception $e) {
        $this->_setErrormsg($e->getMessage());
+       return false;
      }
 
  }
@@ -95,6 +109,22 @@ class FileIntegrity {
         $this->_filename = $filename;
     }
 
+
+    /**
+     * @return string|null
+     */
+    public function _getFileversion():?string{
+        return $this->_fileversion;
+    }
+
+    /**
+     * @param string $version
+     * @return void
+     */
+    public function _setFileversion(string $version):void{
+        $this->_fileversion = $version;
+    }
+
     /**
      * @return string|null
      */
@@ -138,6 +168,7 @@ class FileIntegrity {
 
 
  public function verfiy():bool{
+     $hashes = file_get_contents($this->_getFilename());
         return true;
  }
 
