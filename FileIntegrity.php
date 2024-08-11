@@ -2,14 +2,35 @@
 
 class FileIntegrity {
 
+
+    /**
+     * @var string|null
+     */
     private ?string $_root = NULL;
+    /**
+     * @var string|null
+     */
     private ?string $_dir = NULL;
 
+    /**
+     * @var array|null
+     */
     private ?array $_hashes = NULL;
-
+    /**
+     * @var string|null
+     */
     private ?string $_filename = NULL;
+    /**
+     * @var string|null
+     */
+    private ?string $_errormsg = NULL;
 
  public function init():bool{
+     try {
+       $this->create();
+     } catch(Exception $e) {
+       $this->_setErrormsg($e->getMessage());
+     }
 
  }
 
@@ -75,6 +96,21 @@ class FileIntegrity {
     }
 
     /**
+     * @return string|null
+     */
+    public function _getErrormsg():?string{
+        return $this->_errormsg;
+    }
+
+    /**
+     * @param string $errormsg
+     * @return void
+     */
+    public function _setErrormsg(string $errormsg):void{
+        $this->_errormsg = $errormsg;
+    }
+
+    /**
      * @return void
      * @throws Exception
      */
@@ -97,6 +133,8 @@ class FileIntegrity {
     }
 
  }
+
+
 
 
  public function verfiy():bool{
