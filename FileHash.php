@@ -2,6 +2,7 @@
 
 class FileHash
 {
+
     /**
      * @param string $directory
      * @param string|null $relative
@@ -26,6 +27,19 @@ class FileHash
         return $return;
 
     }
+
+    /**
+     * @param string $filepath
+     * @return mixed
+     * @throws Exception
+     */
+  public static function GetSingle(string $filepath):mixed{
+      $return = md5_file($filepath);
+      if($return === false){
+          throw new \Exception('Erstellen des Hashes nicht möglich.');
+      }
+      return $return;
+  }
 
 }
 
