@@ -39,11 +39,11 @@ class FileIntegrity {
      */
  public function init():bool{
      try {
-       $this->create();
-       return true;
+          $this->create();
+          return true;
      } catch(Exception $e) {
-       $this->_setErrormsg($e->getMessage());
-       return false;
+          $this->_setErrormsg($e->getMessage());
+          return false;
      }
 
  }
@@ -52,14 +52,14 @@ class FileIntegrity {
      * @param string $root
      * @return void
      */
- public function _setroot(string $root):void{
+ public function _setRoot(string $root):void{
      $this->_root = $root;
  }
 
     /**
      * @return string
      */
- public function _getroot():?string{
+ public function _getRoot():?string{
      return $this->_root;
  }
 
@@ -145,8 +145,8 @@ class FileIntegrity {
      * @throws Exception
      */
  public function create():void{
-    $dirname = $this->_getroot();
-    if(substr($this->_getroot(), -1) !== '/'){
+    $dirname = $this->_getRoot();
+    if(substr($this->_getRoot(), -1) !== '/'){
         $dirname = $dirname . '/';
     }
     $dirname .= $this->_getDir();
